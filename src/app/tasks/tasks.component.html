@@ -1,0 +1,72 @@
+<div class="col s12 m12 l12">
+  <ul id="task-card" class="collection with-header">
+    <li class="collection-item dismissable" *ngFor="let task of tasks">
+      <input type="checkbox" id="task{{task.pk}}"/>
+      <label for="task{{task.pk}}">{{task.name}}
+        <a href="#" class="secondary-content">
+          <span class="ultra-small">{{task.created_at}}</span>
+        </a>
+        <div class="task-details">
+          <p>
+            {{task.description}}
+          </p>
+        </div>
+      </label>
+      <span class="task-cat cyan">Mobile App</span>
+
+    </li>
+  </ul>
+</div>
+
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <div class="main-body">
+      <div class="page-wrapper">
+
+        <div class="page-body">
+          <div class="row">
+            <!-- Task table start -->
+            <div class="col-md-12 col-xl-12">
+              <div class="card add-task-card">
+                <div class="card-header">
+                  <div class="card-header-left">
+                    <h5>To do list</h5>
+                  </div>
+                  <div class="card-header-right">
+                    <button class="btn btn-card btn-primary">Add task</button>
+                  </div>
+                </div>
+                <div class="card-block">
+
+                  <div class="to-do-list" *ngFor="let task of tasks">
+                    <div class="checkbox-fade fade-in-primary d-block">
+                      <label class="check-task d-block">
+                        <input type="checkbox" value="">
+                        <span class="cr">
+                                                                        <i
+                                                                          class="cr-icon icofont icofont-ui-check txt-default"></i>
+                                                                    </span>
+                        <span><h6>{{task.name}} <span class="label bg-c-green m-l-10 f-10">2 week</span></h6></span>
+                        <div class="task-card-img m-l-40">
+                          <a href="#!"><img src="http://localhost:8000/static/assets/images/avatar-2.jpg" data-toggle="tooltip" title="Lary Doe"
+                                            alt="" class="img-40"></a>
+
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <!-- Data widget End -->
+          </div>
+        </div>
+      </div>
+
+      <div id="styleSelector">
+
+      </div>
+    </div>
+  </div>
+</div>
