@@ -22,37 +22,13 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "assets/**/*.js",
-                "input": "src/assets",
-                "output": "assets"
-              }
+              "src/assets"
+
             ],
             "styles": [
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/bootstrap/js/bootstrap.min.js",
-              "src/assets/js/jquery/jquery.min.js",
-              "src/assets/js/classie/classie.js",
-              "src/assets/js/jquery-slimscroll/jquery.slimscroll.js",
-              "src/assets/js/jquery-ui/jquery-ui.min.js",
-              "src/assets/js/modernizr/css-scrollbars.js",
-              "src/assets/js/modernizr/modernizr.js",
-              "src/assets/js/morris.js/morris.js",
-              "src/assets/js/popper.js/popper.min.js",
-              "src/assets/js/jquery.mCustomScrollbar.concat.min.js",
-              "src/assets/js/jquery.mousewheel.min.js",
-              "src/assets/js/bootstrap-growl.min.js",
-              "src/assets/js/classie.js",
-              "src/assets/js/common-pages.js",
-              "src/assets/js/demo-12.js",
-              "src/assets/js/jquery.mCustomScrollbar.concat.min.js",
-              "src/assets/js/jquery.mousewheel.min.js",
-              "src/assets/js/pcoded.min.js",
-              "src/assets/js/script.js",
-              "src/assets/js/SmoothScroll.js"
             ]
           },
           "configurations": {

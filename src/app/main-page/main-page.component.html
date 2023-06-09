@@ -1,171 +1,68 @@
-<!-- Pre-loader start -->
-<!--<div class="theme-loader">-->
-<!--  <div class="ball-scale">-->
-<!--    <div class='contain'>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
+<div  class="container-fluid">
+  <div *ngIf="isLoggedIn()" class="row flex-nowrap">
+    <div class="col-auto px-0">
+      <div id="sidebar" [class.show]="isToggle" class="collapse collapse-horizontal border-end">
+        <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-120">
 
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--      <div class="ring">-->
-<!--        <div class="frame"></div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<!-- Pre-loader end -->
-<div id="pcoded" class="pcoded">
-  <div class="pcoded-overlay-box"></div>
-  <div class="pcoded-container navbar-wrapper">
+          <div class="row" >
+            <div class="col-12" *ngFor="let project of projects">
+            <span [class.active]="currentProjectId==project.id" class="border-1 list-group-item"
+                  (click)="setCurrentProject(project.id)">
 
-    <nav class="navbar header-navbar pcoded-header">
-      <div class="navbar-wrapper">
+              <a href="#" [class.active]="currentProjectId==project.id"
+                 class="list-group-item border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                <i class="bi bi-bootstrap"></i>
+                <span>{{project.name}}</span></a>
+              <button type="button" class="btn float-end btn-danger"
+                      (click)="removeProject(project.id)">🞩</button>
 
-        <div class="navbar-logo">
-          <a class="mobile-menu" id="mobile-collapse" href="#!">
-            <i class="ti-menu"></i>
-          </a>
-          <a class="mobile-search morphsearch-search" href="#">
-            <i class="ti-search"></i>
-          </a>
-          <a href="index.html">
-            <img class="img-fluid" src="http://localhost:8000/static/assets/images/logo.png" alt="Theme-Logo" />
-          </a>
-          <a class="mobile-options">
-            <i class="ti-more"></i>
-          </a>
-        </div>
-
-        <div class="navbar-container container-fluid">
-          <ul class="nav-left">
-            <li>
-              <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-            </li>
-
-            <li>
-              <a href="#!" onclick="javascript:toggleFullScreen()">
-                <i class="ti-fullscreen"></i>
-              </a>
-            </li>
-          </ul>
-          <ul class="nav-right">
-            <li class="header-notification">
-              <a href="#!">
-                <i class="ti-bell"></i>
-                <span class="badge bg-c-pink"></span>
-              </a>
-              <ul class="show-notification">
-                <li>
-                  <h6>Notifications</h6>
-                  <label class="label label-danger">New</label>
-                </li>
-                <li>
-                  <div class="media">
-                    <img class="d-flex align-self-center img-radius" src="http://localhost:8000/static/assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                    <div class="media-body">
-                      <h5 class="notification-user">John Doe</h5>
-                      <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                      <span class="notification-time">30 minutes ago</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media">
-                    <img class="d-flex align-self-center img-radius" src="http://localhost:8000/static/assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                    <div class="media-body">
-                      <h5 class="notification-user">Joseph William</h5>
-                      <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                      <span class="notification-time">30 minutes ago</span>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="media">
-                    <img class="d-flex align-self-center img-radius" src="http://localhost:8000/static/assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                    <div class="media-body">
-                      <h5 class="notification-user">Sara Soudein</h5>
-                      <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                      <span class="notification-time">30 minutes ago</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#!">
-                <i class="ti-settings"></i>
-              </a>
-            </li>
-            <li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="pcoded-main-container">
-      <div class="pcoded-wrapper">
-        <nav class="pcoded-navbar">
-          <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
-          <div class="pcoded-inner-navbar main-menu">
-            <div class="">
-              <div class="main-menu-content">
-                <ul>
-                  <li class="more-details">
-                    <a href="#"><i class="ti-user"></i>View Profile</a>
-                    <a href="#!"><i class="ti-settings"></i>Settings</a>
-                    <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
-                  </li>
-                </ul>
-              </div>
+            </span>
             </div>
-
-            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
-            <ul class="pcoded-item pcoded-left-item">
-              <li class="active" *ngFor="let project of projects" id="{{project.pk}}"
-                  (click)="setCurrentProject(project.pk)">
-                <a href="index.html">
-                  <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                  <span class="pcoded-mtext" data-i18n="nav.dash.main">{{project.name}}</span>
-                  <span class="pcoded-mcaret"></span>
-                </a>
-              </li>
-
-            </ul>
-
+            <div class="col-12 form-group">
+              <input type="email" name="newProjectName" class="form-control" placeholder="New project name"
+                     [(ngModel)]="newProjectName">
+              <button id="btn-new-project" type="submit" (click)="addProject()" class="btn btn-primary">Create new project</button>
+            </div>
           </div>
-        </nav>
-        <p>{{currentProjectId}}</p>
-        <app-tasks *ngIf="currentProjectId" [projectId]="currentProjectId"></app-tasks>
 
+
+
+
+        </div>
 
       </div>
     </div>
-    <div class="fixed-button">
-      <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-      </a>
+    <main class="col ps-md-4 pt-2">
+      <div class="page-header row">
+        <div class="col-auto m-auto float-start">
+          <button type="button" id="btn-menu" class="btn btn-outline-dark" (click)="isToggle=!isToggle">☰</button>
+        </div>
+        <div class="col pt-3 m-auto">
+          <h2>Tasks</h2>
+        </div>
+        <div class="col">
+        <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover float-end"
+           (click)="logOut()"
+           href="/login">Log out</a>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row  justify-content-center">
+          <div *ngIf="CurrentProjectIdNotUnderfind()" class="col-lg-11 gy-4 ">
+            <app-tasks [projectId]="currentProjectId"></app-tasks>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div *ngIf="!isLoggedIn() && (currentProjectId==-1)" class="row text-center">
+    <div class="col-12">
+      <h1>You are not logged in</h1>
+    </div>
+    <div class="col-12">
+      <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover my-auto"
+         href="/login">Go to Login</a>
     </div>
   </div>
+
 </div>

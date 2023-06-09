@@ -1,72 +1,51 @@
-<div class="col s12 m12 l12">
-  <ul id="task-card" class="collection with-header">
-    <li class="collection-item dismissable" *ngFor="let task of tasks">
-      <input type="checkbox" id="task{{task.pk}}"/>
-      <label for="task{{task.pk}}">{{task.name}}
-        <a href="#" class="secondary-content">
-          <span class="ultra-small">{{task.created_at}}</span>
-        </a>
-        <div class="task-details">
-          <p>
-            {{task.description}}
-          </p>
-        </div>
-      </label>
-      <span class="task-cat cyan">Mobile App</span>
-
-    </li>
-  </ul>
-</div>
-
-<div class="pcoded-content">
-  <div class="pcoded-inner-content">
-    <div class="main-body">
-      <div class="page-wrapper">
-
-        <div class="page-body">
-          <div class="row">
-            <!-- Task table start -->
-            <div class="col-md-12 col-xl-12">
-              <div class="card add-task-card">
-                <div class="card-header">
-                  <div class="card-header-left">
-                    <h5>To do list</h5>
-                  </div>
-                  <div class="card-header-right">
-                    <button class="btn btn-card btn-primary">Add task</button>
-                  </div>
-                </div>
-                <div class="card-block">
-
-                  <div class="to-do-list" *ngFor="let task of tasks">
-                    <div class="checkbox-fade fade-in-primary d-block">
-                      <label class="check-task d-block">
-                        <input type="checkbox" value="">
-                        <span class="cr">
-                                                                        <i
-                                                                          class="cr-icon icofont icofont-ui-check txt-default"></i>
-                                                                    </span>
-                        <span><h6>{{task.name}} <span class="label bg-c-green m-l-10 f-10">2 week</span></h6></span>
-                        <div class="task-card-img m-l-40">
-                          <a href="#!"><img src="http://localhost:8000/static/assets/images/avatar-2.jpg" data-toggle="tooltip" title="Lary Doe"
-                                            alt="" class="img-40"></a>
-
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <!-- Data widget End -->
-          </div>
-        </div>
-      </div>
-
-      <div id="styleSelector">
-
-      </div>
-    </div>
+<form class="row g-3 border-1">
+  <div class="mb-0">
+    <input type="email" class="form-control" name="newTaskName" [(ngModel)]="newTaskName" placeholder="Task name">
   </div>
-</div>
+  <div class="mb-0">
+    <textarea class="form-control" name="newTaskDescription" [(ngModel)]="newTaskDescription" rows="2" placeholder="Task description"></textarea>
+  </div>
+  <div class="col-auto">
+    <button type="submit" (click)="addTask()" class="btn btn-primary mb-3">Add task</button>
+  </div>
+</form>
+
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let task of (tasks|sortTasksBuStatus)">
+    <div class="form-check">
+      <input *ngIf="task.status == 'Done'" (click)="setTaskStatus(task, 'Active')" class="form-check-input" type="checkbox" checked>
+      <input *ngIf="task.status == 'Active'" (click)="setTaskStatus(task, 'Done')" class="form-check-input" type="checkbox">
+
+
+
+      <button type="button" class="btn float-end btn-outline-dark" (click)="task.descriptionOpen=!task.descriptionOpen">⌄</button>
+
+      <button type="button" *ngIf="startedTask!=task.id" class="btn float-end btn-primary" (click)="startTask(task.id)">▶</button>
+      <button type="button" *ngIf="startedTask==task.id" class="btn float-end btn-outline-primary" (click)="stopTask(task)">⏸</button>
+
+      <div *ngIf="startedTask!=task.id" class="badge bg-primary text-wrap float-end">
+        {{task.timeSpent}}
+      </div>
+
+      <div *ngIf="startedTask==task.id" class="badge bg-primary text-wrap float-end">
+        {{timer}}
+      </div>
+
+
+
+      <label class="form-check-label"> {{task.name}}</label>
+    </div>
+
+
+
+    <div [class.show]="task.descriptionOpen" class="collapse" id="collapseExample">
+      <div class="card card-body mb-2">
+        {{task.description}}
+      </div>
+      <button type="button" (click)="removeTask(task.id)" class="btn float-end btn-danger">Remove task</button>
+    </div>
+
+
+  </li>
+</ul>
