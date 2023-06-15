@@ -22,6 +22,8 @@ export class SortTasksBuStatus implements PipeTransform {
 export class TasksComponent implements OnChanges {
   newTaskName: string = ''
   newTaskDescription: string = ''
+  newTaskNameErr: string = ''
+  newTaskDescriptionErr: string = ''
   startedTask: number | null = null
   // @ts-ignore
   timer: string = '0m'
@@ -73,11 +75,19 @@ export class TasksComponent implements OnChanges {
 
         },
         error: err => {
-          alert('Invalid data')
+          console.debug(err)
+          if (err.error.name){
+            this.newTaskNameErr = err.error.name
+          }
+          if (err.error.description){
+            this.newTaskDescriptionErr = err.error.description
+          }
         },
         complete: () => {
           this.newTaskName = ''
           this.newTaskDescription = ''
+          this.newTaskNameErr = ''
+          this.newTaskDescriptionErr = ''
 
         }
 

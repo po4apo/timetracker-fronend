@@ -48,7 +48,7 @@ addProject(){
       this.setCurrentProject(project.id)
     },
       error: err => {
-        alert('Invalid data')
+        alert(err.error)
       },
         complete: () => {
           this.newProjectName = ''

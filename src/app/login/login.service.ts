@@ -7,8 +7,8 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import {Observable, throwError, timeout} from "rxjs";
-import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {map, Observable, throwError} from "rxjs";
+import {catchError} from 'rxjs/operators';
 
 const URL = 'http://158.160.105.71:8000/'
 
@@ -41,35 +41,32 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    localStorage.clear()
-    this.http.post<AuthResult>(URL + 'api/token/', {"username": username, "password": password}).subscribe(
-      (data) => {
 
-        this.setAccessToken(data.access)
-        if (data.refresh) {
-          this.setRefreshToken(data.refresh)
-        } else {
-          console.debug('There is not refresh_token')
+    return this.http.post<AuthResult>(URL + 'api/token/', {"username": username, "password": password}).pipe(
+      map(data => {
+          localStorage.clear()
+          this.setAccessToken(data.access)
+          if (data.refresh) {
+            this.setRefreshToken(data.refresh)
+          } else {
+            console.debug('There is not refresh_token')
+          }
+          console.debug('Login successes')
+          console.debug(localStorage)
+
+          this.http.get<Profile>(URL + 'profile/').subscribe({
+              next: data => {
+                this.setUserId(data.id.toString())
+              },
+              complete: () => {
+                // Go to main page
+                window.location.href = '..';
+              }
+            }
+          )
         }
-        console.debug('Login successes')
-        console.debug(localStorage)
-
-        this.http.get<Profile>(URL + 'profile/').subscribe({
-          next: data=>{
-          this.setUserId(data.id.toString())
-        },
-        complete: () => {
-          // Go to main page
-          window.location.href = '..';
-        }
-      }
-        )
-
-
-      }
+      )
     )
-
-
   }
 
   logout() {
@@ -101,9 +98,11 @@ export class AuthService {
   setRefreshToken(refresh_token: string) {
     localStorage.setItem('refresh_token', refresh_token)
   }
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.getAccessToken() != undefined
   }
+
   // @ts-ignore
   refreshAccessToken() {
     let body: Refresh = {

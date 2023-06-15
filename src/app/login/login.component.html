@@ -3,12 +3,15 @@
     <form class="col-md-4">
       <div class="mb-3">
         <h1>Login</h1>
-        <label for="exampleInputEmail1" class="form-label">Your login</label>
-        <input type="email" name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login">
+        <label for="inputEmail" class="form-label">Your login</label>
+        <input type="email" name="login" class="form-control" id="inputEmail"[(ngModel)]="login">
+        <p class="text-danger text-opacity-50"><small>{{loginErr}}</small></p>
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" name="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="password">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="inputPassword" [(ngModel)]="password">
+        <p class="text-danger text-opacity-50"><small>{{passwordErr}}</small></p>
+
 
       </div>
       <button type="submit" (touchstart)="onSubmit()" (click)="onSubmit()" class="btn btn-outline-dark" >Login</button>

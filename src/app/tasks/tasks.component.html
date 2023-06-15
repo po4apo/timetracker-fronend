@@ -1,9 +1,13 @@
 <form class="row g-3 border-1">
   <div class="mb-0">
     <input type="email" class="form-control" name="newTaskName" [(ngModel)]="newTaskName" placeholder="Task name">
+    <p class="text-danger text-opacity-50"><small>{{newTaskNameErr}}</small></p>
+
   </div>
   <div class="mb-0">
     <textarea class="form-control" name="newTaskDescription" [(ngModel)]="newTaskDescription" rows="2" placeholder="Task description"></textarea>
+    <p class="text-danger text-opacity-50"><small>{{newTaskDescriptionErr}}</small></p>
+
   </div>
   <div class="col-auto">
     <button type="submit" (click)="addTask()" class="btn btn-primary mb-3">Add task</button>
